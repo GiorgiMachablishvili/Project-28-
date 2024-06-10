@@ -71,9 +71,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setup()
         setupConstraints()
-//        setupHeaderView()
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        self.navigationController?.isNavigationBarHidden = true
         
         view.backgroundColor = UIColor(hexString: "8152E7")
         
@@ -105,7 +106,7 @@ class ViewController: UIViewController {
         }
         
         ringButton.snp.remakeConstraints { make in
-            make.bottom.equalTo(titleLabel.snp.top).offset(-23 * Constraint.yCoeff)
+            make.bottom.equalTo(titleLabel.snp.top).offset(-3 * Constraint.yCoeff)
             make.trailing.equalTo(view.snp.trailing).offset(-33 * Constraint.xCoeff)
             make.width.equalTo(18 * Constraint.xCoeff)
             make.height.equalTo(21 * Constraint.yCoeff)
@@ -116,13 +117,6 @@ class ViewController: UIViewController {
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
-    
-//    //MARK: setup header view
-//    func setupHeaderView() {
-//        let headerView = HeaderView(pageDescription: menuData.menuHeader)
-//        headerView.frame = .init(x: 0, y: 0, width: collectionView.frame.width, height: 10)
-//        view = headerView
-//    }
 }
 
 extension ViewController: UICollectionViewDataSource {
