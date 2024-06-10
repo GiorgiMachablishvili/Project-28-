@@ -10,6 +10,7 @@ import SnapKit
 
 class HeaderView: UIView {
     
+    //MARK: -UI components
     private lazy var titleLabel: UILabel = {
       let view = UILabel(frame: .zero)
         view.numberOfLines = 1
@@ -38,11 +39,13 @@ class HeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: set up view
     func setup() {
         addSubview(titleLabel)
         addSubview(sloganLabel)
     }
     
+    //MARK: set up constraints
     func setupConstraint() {
         titleLabel.snp.remakeConstraints { make in
             make.top.equalTo(snp.top).offset(66 * Constraint.xCoeff)

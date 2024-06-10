@@ -9,12 +9,7 @@ import UIKit
 import SnapKit
 
 class ViewController: UIViewController {
-    
-//    private lazy var tableView: UITableView = {
-//      let view = UITableView(frame: .zero)
-//      return view
-//    }()
-//    
+    //MARK: -UI components
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -51,22 +46,26 @@ class ViewController: UIViewController {
 //        setupHeaderView()
         collectionView.dataSource = self
         collectionView.delegate = self
+        
         view.backgroundColor = UIColor(hexString: "8152E7")
         
     }
     
+    //MARK: set up view
     func setup() {
         collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: "mainViewCell")
         view.addSubview(collectionView)
         
     }
     
+    //MARK: set up constraints
     func setupConstraints() {
         collectionView.snp.remakeConstraints { make in
           make.edges.equalToSuperview()
         }
     }
     
+    //MARK: setup header view
     func setupHeaderView() {
         let headerView = HeaderView(pageDescription: menuData.menuHeader)
         headerView.frame = .init(x: 0, y: 0, width: collectionView.frame.width, height: 10)

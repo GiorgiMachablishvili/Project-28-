@@ -10,15 +10,19 @@ import SnapKit
 
 class OrderApprovViewController: UIViewController {
     
+    
+    //MARK: -UI components
     private lazy var imagebackGround: UIImageView = {
         let view = UIImageView(frame: .zero)
         view.image = UIImage(named: "imageBackground")
+        view.isUserInteractionEnabled = true
         return view
     }()
     
     private lazy var approveImage: UIImageView = {
         let view = UIImageView(frame: .zero)
         view.image = UIImage(named: "ic_baseline-done-all")
+        view.isUserInteractionEnabled = true
         return view
     }()
     
@@ -41,15 +45,20 @@ class OrderApprovViewController: UIViewController {
         view.numberOfLines = 1
         return view
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(hexString: "8152E7")
         setup()
         setupConstraints()
-
+        setupTapGesture()
+        
+        //MARK: gradient background
+        view.setGradientBackground(colors: [UIColor(hexString: "2C62B2"),UIColor(hexString: "8152E7"),UIColor(hexString: "092248"),],
+                                   startPoint: CGPoint(x: 0, y: 0),
+                                   endPoint: CGPoint(x: 1, y: 1))
     }
     
+    //MARK: set up view
     func setup() {
         view.addSubview(imagebackGround)
         imagebackGround.addSubview(approveImage)
@@ -57,31 +66,43 @@ class OrderApprovViewController: UIViewController {
         view.addSubview(infoLabel)
     }
     
+    //MARK: set up constraints
     func setupConstraints() {
         imagebackGround.snp.remakeConstraints { make in
-            make.top.equalTo(view.snp.top).offset(319)
+            make.top.equalTo(view.snp.top).offset(319 * Constraint.yCoeff)
             make.centerX.equalTo(view.snp.centerX)
-            make.height.equalTo(82)
-            make.width.equalTo(98)
+            make.height.equalTo(82 * Constraint.yCoeff)
+            make.width.equalTo(98 * Constraint.xCoeff)
         }
         
         approveImage.snp.remakeConstraints { make in
             make.center.equalTo(imagebackGround.snp.center)
-            make.height.width.equalTo(58)
+            make.height.width.equalTo(58 * Constraint.yCoeff)
         }
         
         approveLabel.snp.remakeConstraints { make in
-            make.top.equalTo(imagebackGround.snp.bottom).offset(4)
+            make.top.equalTo(imagebackGround.snp.bottom).offset(4 * Constraint.yCoeff)
             make.centerX.equalTo(imagebackGround.snp.centerX)
-            make.width.equalTo(49)
-            make.height.equalTo(27)
+            make.width.equalTo(49 * Constraint.xCoeff)
+            make.height.equalTo(27 * Constraint.yCoeff)
         }
         
         infoLabel.snp.remakeConstraints { make in
-            make.top.equalTo(approveLabel.snp.top).offset(24)
+            make.top.equalTo(approveLabel.snp.top).offset(24 * Constraint.yCoeff)
             make.centerX.equalTo(imagebackGround.snp.centerX)
-            make.width.equalTo(177)
-            make.height.equalTo(26)
+            make.width.equalTo(177 * Constraint.xCoeff)
+            make.height.equalTo(26 * Constraint.yCoeff)
         }
     }
+    
+    //MARK: tab gesture
+    private func setupTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnGesture(_:)))
+        approveImage.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func didTapOnGesture(_ gesture: UITapGestureRecognizer) {
+        navigationController?.popViewController(animated: true)
+    }
+        
 }

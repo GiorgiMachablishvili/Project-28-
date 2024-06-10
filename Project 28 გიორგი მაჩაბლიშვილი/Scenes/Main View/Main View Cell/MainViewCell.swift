@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class MainViewCell: UICollectionViewCell {
-    
+    //MARK: -UI components
     private lazy var backGroundImage: UIImageView = {
         let view = UIImageView(frame: .zero)
         return view
@@ -71,6 +71,7 @@ class MainViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: set up view
     func setup() {
         addSubview(backGroundImage)
         addSubview(productImage)
@@ -81,6 +82,7 @@ class MainViewCell: UICollectionViewCell {
         buttonBackView.addSubview(plusButton)
     }
     
+    //MARK: set up constraints
     func setupConstraints() {
         backGroundImage.snp.remakeConstraints { make in
             make.top.equalTo(snp.top).offset(10 * Constraint.yCoeff)
@@ -128,6 +130,7 @@ class MainViewCell: UICollectionViewCell {
         }
     }
     
+    //MARK: configuration components
     func configuration(with data: MenuInfo) {
         backGroundImage.image = data.productBackgroundImage
         productImage.image = data.productImage

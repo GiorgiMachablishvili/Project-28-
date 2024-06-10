@@ -28,6 +28,7 @@
 		E39C67212C1656EB001EBB8E /* SelectedItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C67202C1656EB001EBB8E /* SelectedItemViewController.swift */; };
 		E39C67252C16591E001EBB8E /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39C67242C16591E001EBB8E /* ItemView.swift */; };
 		E3BFFD8D2C16EF74003FD556 /* OrderApprovViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BFFD8C2C16EF74003FD556 /* OrderApprovViewController.swift */; };
+		E3BFFD902C1703A1003FD556 /* UIGradient+Extansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BFFD8F2C1703A1003FD556 /* UIGradient+Extansion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		E39C67202C1656EB001EBB8E /* SelectedItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedItemViewController.swift; sourceTree = "<group>"; };
 		E39C67242C16591E001EBB8E /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		E3BFFD8C2C16EF74003FD556 /* OrderApprovViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderApprovViewController.swift; sourceTree = "<group>"; };
+		E3BFFD8F2C1703A1003FD556 /* UIGradient+Extansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGradient+Extansion.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 			children = (
 				E39C670C2C162BC5001EBB8E /* UIFonts+Extansion.swift */,
 				E39C670E2C162CAF001EBB8E /* UIColor+Extension.swift */,
+				E3BFFD8F2C1703A1003FD556 /* UIGradient+Extansion.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				E32BCBEE2C148D1F000EC75C /* AppDelegate.swift in Sources */,
 				E39C67002C162897001EBB8E /* MenuInfo.swift in Sources */,
 				E39C67252C16591E001EBB8E /* ItemView.swift in Sources */,
+				E3BFFD902C1703A1003FD556 /* UIGradient+Extansion.swift in Sources */,
 				E32BCBF02C148D1F000EC75C /* SceneDelegate.swift in Sources */,
 				E39C670D2C162BC5001EBB8E /* UIFonts+Extansion.swift in Sources */,
 				E39C670F2C162CAF001EBB8E /* UIColor+Extension.swift in Sources */,

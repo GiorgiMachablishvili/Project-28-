@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class SelectedItemViewController: UIViewController {
-    
+    //MARK: -UI components
     private lazy var backButton: UIButton = {
         let view = UIButton(frame: .zero)
         view.backgroundColor = UIColor(hexString: "8152E7")
@@ -23,7 +23,6 @@ class SelectedItemViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero)
         view.backgroundColor = UIColor(hexString: "8152E7")
-        
         return view
     }()
     
@@ -97,9 +96,14 @@ class SelectedItemViewController: UIViewController {
         setupConstraints()
         configuration()
         setupView()
-        view.backgroundColor = UIColor(hexString: "8152E7")
+        //MARK: gradient view color
+        view.setGradientBackground(colors: [UIColor(hexString: "2C62B2"),UIColor(hexString: "8152E7"),UIColor(hexString: "092248"),],
+                                   startPoint: CGPoint(x: 0, y: 0),
+                                   endPoint: CGPoint(x: 1, y: 1))
+        //        view.backgroundColor = UIColor(hexString: "8152E7")
     }
     
+    //MARK: set up view
     func setup() {
         view.addSubview(tableView)
         tableView.addSubview(backButton)
@@ -112,73 +116,76 @@ class SelectedItemViewController: UIViewController {
         view.addSubview(addButton)
     }
     
+    //MARK: set up constraints
     func setupConstraints() {
         tableView.snp.remakeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(631)
+            make.height.equalTo(631 * Constraint.yCoeff)
         }
         
         backButton.snp.remakeConstraints { make in
-            make.top.equalTo(tableView.snp.top).offset(33)
-            make.leading.equalTo(tableView.snp.leading).offset(30)
-            make.width.height.equalTo(24)
+            make.top.equalTo(tableView.snp.top).offset(33 * Constraint.yCoeff)
+            make.leading.equalTo(tableView.snp.leading).offset(30 * Constraint.xCoeff)
+            make.width.height.equalTo(24 * Constraint.yCoeff)
         }
         
         buttonsView.snp.remakeConstraints { make in
-            make.bottom.equalTo(view.snp.bottom).offset(-102)
-            make.leading.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(79)
+            make.bottom.equalTo(view.snp.bottom).offset(-102 * Constraint.yCoeff)
+            make.leading.trailing.equalToSuperview().inset(30 * Constraint.xCoeff)
+            make.height.equalTo(79 * Constraint.yCoeff)
         }
         
         plusButton.snp.remakeConstraints { make in
             make.centerY.equalTo(buttonsView.snp.centerY)
-            make.leading.equalTo(buttonsView.snp.leading).offset(26)
-            make.width.height.equalTo(32)
+            make.leading.equalTo(buttonsView.snp.leading).offset(26 * Constraint.xCoeff)
+            make.width.height.equalTo(32 * Constraint.yCoeff)
         }
         
         itemCountLabel.snp.remakeConstraints { make in
             make.centerY.equalTo(buttonsView.snp.centerY)
-            make.leading.equalTo(plusButton.snp.trailing).offset(22)
-            make.width.equalTo(12)
-            make.height.equalTo(20)
+            make.leading.equalTo(plusButton.snp.trailing).offset(22 * Constraint.xCoeff)
+            make.width.equalTo(12 * Constraint.xCoeff)
+            make.height.equalTo(20 * Constraint.yCoeff)
         }
         
         minusButton.snp.remakeConstraints { make in
             make.centerY.equalTo(buttonsView.snp.centerY)
-            make.leading.equalTo(itemCountLabel.snp.trailing).offset(20)
-            make.width.height.equalTo(32)
+            make.leading.equalTo(itemCountLabel.snp.trailing).offset(20 * Constraint.xCoeff)
+            make.width.height.equalTo(32 * Constraint.yCoeff)
         }
         
         priceLabel.snp.remakeConstraints { make in
             make.centerY.equalTo(buttonsView.snp.centerY)
-            make.trailing.equalTo(buttonsView.snp.trailing).offset(285)
-            make.width.equalTo(79)
-            make.height.equalTo(28)
+            make.trailing.equalTo(buttonsView.snp.trailing).offset(285 * Constraint.xCoeff)
+            make.width.equalTo(79 * Constraint.xCoeff)
+            make.height.equalTo(28 * Constraint.yCoeff)
         }
         
         totalLabel.snp.remakeConstraints { make in
-            make.top.equalTo(buttonsView.snp.top).offset(9)
-            make.trailing.equalTo(buttonsView.snp.trailing).offset(260)
-            make.width.equalTo(51)
-            make.height.equalTo(14)
+            make.top.equalTo(buttonsView.snp.top).offset(9 * Constraint.yCoeff)
+            make.trailing.equalTo(buttonsView.snp.trailing).offset(260 * Constraint.xCoeff)
+            make.width.equalTo(51 * Constraint.xCoeff)
+            make.height.equalTo(14 * Constraint.yCoeff)
         }
         
         addButton.snp.remakeConstraints { make in
-            make.top.equalTo(buttonsView.snp.bottom).offset(11)
-            make.leading.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(50)
+            make.top.equalTo(buttonsView.snp.bottom).offset(11 * Constraint.yCoeff)
+            make.leading.trailing.equalToSuperview().inset(30 * Constraint.xCoeff)
+            make.height.equalTo(50 * Constraint.yCoeff)
         }
         
     }
     
+    //MARK: config delegat items
     func configuration() {
         if let items = delegate {
             itemInfo = ItemInfo(
                 productImage: items.productImage,
                 productName: items.productName)
-//                productDescription: items.ProductIngredients)
         }
     }
+    
+    //MARK: set up header view
     func setupView() {
         guard let itemInfo = itemInfo else { return }
         let headerView = ItemView(pageStruct: itemInfo)
@@ -186,10 +193,12 @@ class SelectedItemViewController: UIViewController {
         tableView.tableHeaderView = headerView
     }
     
+    //MARK: go back button func
     @objc func goBack() {
         navigationController?.popViewController(animated: true)
     }
     
+    //MARK: go next page func
     @objc func goNextPage() {
         let orderVC = OrderApprovViewController()
         navigationController?.pushViewController(orderVC, animated: true)
