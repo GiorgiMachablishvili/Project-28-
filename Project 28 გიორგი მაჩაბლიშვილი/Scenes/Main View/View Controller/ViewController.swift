@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = UIColor(hexString: "8152E7")
+        collectionView.backgroundColor = UIColor.clear
         return collectionView
     }()
     
@@ -75,8 +75,9 @@ class ViewController: UIViewController {
         collectionView.delegate = self
         
         self.navigationController?.isNavigationBarHidden = true
-        
-        view.backgroundColor = UIColor(hexString: "8152E7")
+        view.setGradientBackground(colors: [UIColor(hexString: "2C62B2"),UIColor(hexString: "8152E7"),UIColor(hexString: "092248"),],
+                                   startPoint: CGPoint(x: 0, y: 0),
+                                   endPoint: CGPoint(x: 1, y: 1))
         
     }
     
@@ -143,7 +144,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDelegateFlow
         let selectedItemVC = SelectedItemViewController()
         selectedItemVC.modalPresentationStyle = .fullScreen
         selectedItemVC.delegate = selectedProduct
-        navigationController?.present(selectedItemVC, animated: true)
+        navigationController?.pushViewController(selectedItemVC, animated: true)
     }
 }
 

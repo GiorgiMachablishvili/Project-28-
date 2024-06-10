@@ -14,7 +14,7 @@ class OrderApprovViewController: UIViewController {
     //MARK: -UI components
     private lazy var imagebackGround: UIImageView = {
         let view = UIImageView(frame: .zero)
-        view.image = UIImage(named: "imageBackground")
+        view.image = UIImage(named: "BG")
         view.isUserInteractionEnabled = true
         return view
     }()
@@ -76,8 +76,9 @@ class OrderApprovViewController: UIViewController {
         }
         
         approveImage.snp.remakeConstraints { make in
-            make.center.equalTo(imagebackGround.snp.center)
-            make.height.width.equalTo(58 * Constraint.yCoeff)
+            make.top.equalTo(imagebackGround.snp.top).offset(10)
+            make.bottom.equalTo(imagebackGround.snp.bottom).offset(-10)
+            make.leading.trailing.equalToSuperview().inset(20)
         }
         
         approveLabel.snp.remakeConstraints { make in

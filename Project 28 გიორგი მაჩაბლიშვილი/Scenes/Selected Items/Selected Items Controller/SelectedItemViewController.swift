@@ -12,22 +12,20 @@ class SelectedItemViewController: UIViewController {
     //MARK: -UI components
     private lazy var backButton: UIButton = {
         let view = UIButton(frame: .zero)
-        view.backgroundColor = UIColor(hexString: "8152E7")
         view.setImage(UIImage(named: "Back"), for: .normal)
         view.setTitleColor(UIColor(hexString: "FFFFFF"), for: .normal)
         view.addTarget(self, action: #selector(goBack), for: .touchUpInside)
-        view.isUserInteractionEnabled = true
         return view
     }()
     
     private lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero)
-        view.backgroundColor = UIColor(hexString: "8152E7")
+        view.backgroundColor = UIColor.clear
         return view
     }()
     
-    private lazy var buttonsView: UITableView = {
-        let view = UITableView(frame: .zero)
+    private lazy var buttonsView: UIView = {
+        let view = UIView(frame: .zero)
         view.backgroundColor = UIColor(hexString: "092248")
         view.layer.cornerRadius = 10
         return view
@@ -106,7 +104,7 @@ class SelectedItemViewController: UIViewController {
     //MARK: set up view
     func setup() {
         view.addSubview(tableView)
-        tableView.addSubview(backButton)
+        view.addSubview(backButton)
         view.addSubview(buttonsView)
         buttonsView.addSubview(plusButton)
         buttonsView.addSubview(itemCountLabel)
@@ -124,7 +122,7 @@ class SelectedItemViewController: UIViewController {
         }
         
         backButton.snp.remakeConstraints { make in
-            make.top.equalTo(tableView.snp.top).offset(33 * Constraint.yCoeff)
+            make.top.equalTo(view.snp.top).offset(45 * Constraint.yCoeff)
             make.leading.equalTo(tableView.snp.leading).offset(30 * Constraint.xCoeff)
             make.width.height.equalTo(24 * Constraint.yCoeff)
         }
@@ -194,7 +192,7 @@ class SelectedItemViewController: UIViewController {
     
     //MARK: go back button func
     @objc func goBack() {
-        navigationController?.dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     //MARK: go next page func
