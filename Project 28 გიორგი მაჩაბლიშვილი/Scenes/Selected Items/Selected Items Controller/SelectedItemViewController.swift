@@ -173,7 +173,6 @@ class SelectedItemViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(30 * Constraint.xCoeff)
             make.height.equalTo(50 * Constraint.yCoeff)
         }
-        
     }
     
     //MARK: config delegat items
@@ -195,14 +194,13 @@ class SelectedItemViewController: UIViewController {
     
     //MARK: go back button func
     @objc func goBack() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.dismiss(animated: true)
     }
     
     //MARK: go next page func
-    @objc func goNextPage() {
+    @objc private func goNextPage() {
         let orderVC = OrderApprovViewController()
         navigationController?.pushViewController(orderVC, animated: true)
     }
-    
 }
 

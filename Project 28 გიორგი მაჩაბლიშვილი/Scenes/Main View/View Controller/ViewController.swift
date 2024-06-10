@@ -10,6 +10,34 @@ import SnapKit
 
 class ViewController: UIViewController {
     //MARK: -UI components
+    private lazy var titleLabel: UILabel = {
+        let view = UILabel(frame: .zero)
+        view.numberOfLines = 1
+        view.textAlignment = .left
+        view.font = UIFont.andikaBold(size: 40)
+        view.textColor = UIColor(hexString: "FFFFFF")
+        view.text = "Good Bites"
+        return view
+    }()
+    
+    private lazy var sloganLabel: UILabel = {
+        let view = UILabel(frame: .zero)
+        view.numberOfLines = 1
+        view.textAlignment = .left
+        view.font = UIFont.andikaItalic(size: 18)
+        view.textColor = UIColor(hexString: "FFFFFF")
+        view.text = "delicious burgers!"
+        return view
+    }()
+    
+
+    private lazy var ringButton: UIButton = {
+        let view = UIButton(frame: .zero)
+        view.setImage(UIImage(named: "ring"), for: .normal)
+        view.setTitleColor(UIColor(hexString: "FFFFFF"), for: .normal)
+        return view
+    }()
+   
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -55,23 +83,46 @@ class ViewController: UIViewController {
     func setup() {
         collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: "mainViewCell")
         view.addSubview(collectionView)
+        view.addSubview(titleLabel)
+        view.addSubview(sloganLabel)
+        view.addSubview(ringButton)
         
     }
     
     //MARK: set up constraints
     func setupConstraints() {
+        
+        titleLabel.snp.remakeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(66 * Constraint.yCoeff)
+            make.leading.equalTo(view.snp.leading).offset(29 * Constraint.xCoeff)
+            make.height.equalTo(64 * Constraint.yCoeff)
+        }
+        
+        sloganLabel.snp.remakeConstraints { make in
+            make.top.equalTo(titleLabel.snp.top).offset(55 * Constraint.yCoeff)
+            make.leading.equalTo(view.snp.leading).offset(33 * Constraint.xCoeff)
+            make.height.equalTo(29 * Constraint.yCoeff)
+        }
+        
+        ringButton.snp.remakeConstraints { make in
+            make.bottom.equalTo(titleLabel.snp.top).offset(-23 * Constraint.yCoeff)
+            make.trailing.equalTo(view.snp.trailing).offset(-33 * Constraint.xCoeff)
+            make.width.equalTo(18 * Constraint.xCoeff)
+            make.height.equalTo(21 * Constraint.yCoeff)
+        }
+        
         collectionView.snp.remakeConstraints { make in
-          make.edges.equalToSuperview()
+            make.top.equalTo(titleLabel.snp.bottom).offset(41 * Constraint.yCoeff)
+            make.leading.trailing.bottom.equalToSuperview()
         }
     }
     
-    //MARK: setup header view
-    func setupHeaderView() {
-        let headerView = HeaderView(pageDescription: menuData.menuHeader)
-        headerView.frame = .init(x: 0, y: 0, width: collectionView.frame.width, height: 10)
-        view = headerView
-        
-    }
+//    //MARK: setup header view
+//    func setupHeaderView() {
+//        let headerView = HeaderView(pageDescription: menuData.menuHeader)
+//        headerView.frame = .init(x: 0, y: 0, width: collectionView.frame.width, height: 10)
+//        view = headerView
+//    }
 }
 
 extension ViewController: UICollectionViewDataSource {
