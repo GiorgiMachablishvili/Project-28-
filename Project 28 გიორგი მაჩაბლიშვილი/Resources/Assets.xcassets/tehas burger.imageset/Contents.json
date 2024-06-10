@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "tehas burger.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
