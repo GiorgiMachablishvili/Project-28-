@@ -36,8 +36,9 @@ class SelectedItemViewController: UIViewController {
         super.viewDidLoad()
         setup()
         setupConstraints()
-        configuration()
+//        configuration()
         cellsRegistration()
+        configuration()
         
         //MARK: gradient view color
         view.setGradientBackground(
@@ -115,7 +116,7 @@ extension SelectedItemViewController: UITableViewDelegate {
 
 extension SelectedItemViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 1
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

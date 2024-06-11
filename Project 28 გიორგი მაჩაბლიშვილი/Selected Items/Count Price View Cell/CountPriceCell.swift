@@ -54,14 +54,15 @@ class CountPriceCell: UITableViewCell {
         return view
     }()
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super .init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
         setupConstraints()
+        backgroundColor = UIColor(hexString: "092248")
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func setup() {
@@ -74,33 +75,33 @@ class CountPriceCell: UITableViewCell {
     
     func setupConstraints() {
         plusButton.snp.remakeConstraints { make in
-            make.centerY.equalTo(contentView.snp.centerY)
-            make.leading.equalTo(contentView.snp.leading).offset(26)
-            make.width.height.equalToSuperview().offset(32)
+            make.centerY.equalTo(snp.centerY)
+            make.leading.equalTo(snp.leading).offset(26)
+            make.width.height.equalTo(32)
         }
         
         itemCountLabel.snp.remakeConstraints { make in
-            make.centerY.equalTo(plusButton.snp.centerY)
-            make.leading.equalTo(plusButton.snp.leading).offset(22)
+            make.centerY.equalTo(snp.centerY)
+            make.leading.equalTo(plusButton.snp.trailing).offset(22)
             make.width.equalTo(12)
             make.height.equalTo(22)
         }
         
         minusButton.snp.remakeConstraints { make in
-            make.centerY.equalTo(plusButton.snp.centerY)
+            make.centerY.equalTo(snp.centerY)
             make.leading.equalTo(itemCountLabel.snp.trailing).offset(20)
-            make.width.height.equalToSuperview().offset(32)
+            make.width.height.equalTo(32)
         }
         
         priceLabel.snp.remakeConstraints { make in
-            make.centerY.equalTo(plusButton.snp.centerY)
+            make.centerY.equalTo(snp.centerY)
             make.leading.equalTo(minusButton.snp.trailing).offset(30)
             make.width.equalTo(79)
             make.height.equalTo(28)
         }
         
         totalLabel.snp.remakeConstraints { make in
-            make.top.equalTo(contentView.snp.top).offset(9)
+            make.top.equalTo(snp.top).offset(9)
             make.leading.equalTo(minusButton.snp.trailing).offset(30)
             make.height.equalTo(14)
         }

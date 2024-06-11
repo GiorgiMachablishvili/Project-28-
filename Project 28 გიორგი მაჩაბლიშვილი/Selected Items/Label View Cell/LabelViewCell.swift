@@ -29,15 +29,15 @@ class LabelViewCell: UITableViewCell {
         return view
     }()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super .init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
         setupConstraint()
+        backgroundColor = .clear
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func setup() {
@@ -50,14 +50,12 @@ class LabelViewCell: UITableViewCell {
         productName.snp.remakeConstraints { make in
             make.top.equalTo(snp.top).offset(32 * Constraint.yCoeff)
             make.leading.equalTo(snp.leading).offset(37 * Constraint.xCoeff)
-            make.trailing.equalTo(snp.trailing).offset(-23 * Constraint.xCoeff)
             make.height.equalTo(65 * Constraint.yCoeff)
         }
         
         productIngredients.snp.remakeConstraints { make in
-            make.top.equalTo(productName.snp.bottom).offset(-10 * Constraint.yCoeff)
+            make.top.equalTo(productName.snp.top).offset(10 * Constraint.yCoeff)
             make.leading.equalTo(snp.leading).offset(37 * Constraint.xCoeff)
-            make.trailing.equalTo(snp.trailing).offset(-23 * Constraint.xCoeff)
             make.height.equalTo(110 * Constraint.yCoeff)
         }
     }
