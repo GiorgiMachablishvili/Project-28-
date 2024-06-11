@@ -23,6 +23,14 @@ class SelectedItemViewController: UIViewController {
         view.backgroundColor = UIColor.clear
         view.delegate = self
         view.dataSource = self
+        view.showsVerticalScrollIndicator = false
+        return view
+    }()
+    
+    private lazy var AddToCart: UIButton = {
+        let view = UIButton(frame: .zero)
+        view.setImage(UIImage(named: "addButton"), for: .normal)
+        view.addTarget(self, action: #selector(nextPage), for: .touchUpInside)
         return view
     }()
     
@@ -36,9 +44,10 @@ class SelectedItemViewController: UIViewController {
         super.viewDidLoad()
         setup()
         setupConstraints()
-//        configuration()
-        cellsRegistration()
         configuration()
+        cellsRegistration()
+        
+        self.tableView.separatorStyle = .none
         
         //MARK: gradient view color
         view.setGradientBackground(
@@ -54,13 +63,14 @@ class SelectedItemViewController: UIViewController {
     func setup() {
         view.addSubview(tableView)
         view.addSubview(backButton)
+        view.addSubview(AddToCart)
     }
     
     //MARK: set up constraints
     func setupConstraints() {
         tableView.snp.remakeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view.snp.bottom).offset(-102)
+            make.bottom.equalTo(view.snp.bottom).offset(-90)
         }
         
         backButton.snp.remakeConstraints { make in
@@ -91,11 +101,23 @@ class SelectedItemViewController: UIViewController {
                 totalPriceLabel: "Total Price",
                 totalPrice: items.Price)
         }
+        
+        AddToCart.snp.remakeConstraints { make in
+            make.bottom.equalTo(view.snp.bottom).offset(-41)
+            make.leading.trailing.equalToSuperview().inset(30)
+            make.height.equalTo(60)
+        }
     }
     
     //    MARK: go back button func
     @objc func goBack() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    //    MARK: next page button func
+    @objc func nextPage() {
+        let ordetVC = OrderApprovViewController()
+        navigationController?.pushViewController(ordetVC, animated: true)
     }
 }
 
@@ -105,7 +127,7 @@ extension SelectedItemViewController: UITableViewDelegate {
             case 0:
                 return 400
             case 1:
-                return 200
+                return 150
             case 2:
                 return 100
             default:

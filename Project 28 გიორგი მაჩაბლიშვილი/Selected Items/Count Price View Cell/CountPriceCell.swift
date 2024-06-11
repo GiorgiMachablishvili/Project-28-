@@ -49,7 +49,6 @@ class CountPriceCell: UITableViewCell {
         view.font = UIFont.andikaRegular(size: 24)
         view.textColor = UIColor(hexString: "FFFFFF")
         view.textAlignment = .center
-//        view.text = "$18.00"
         view.numberOfLines = 1
         return view
     }()
@@ -58,6 +57,7 @@ class CountPriceCell: UITableViewCell {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
         setupConstraints()
+        layer.cornerRadius = 30
         backgroundColor = UIColor(hexString: "092248")
     }
     
