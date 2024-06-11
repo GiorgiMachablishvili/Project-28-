@@ -14,6 +14,8 @@ class CountPriceCell: UITableViewCell {
         let view = UIButton(frame: .zero)
         view.backgroundColor = UIColor(hexString: "092248")
         view.setImage(UIImage(named: "Plus"), for: .normal)
+        view.addTarget(self, action: #selector(imageRotation), for: .touchUpInside)
+        view.isUserInteractionEnabled = true
         return view
     }()
     
@@ -31,6 +33,7 @@ class CountPriceCell: UITableViewCell {
         let view = UIButton(frame: .zero)
         view.backgroundColor = UIColor(hexString: "092248")
         view.setImage(UIImage(named: "Minus"), for: .normal)
+        view.isUserInteractionEnabled = true
         return view
     }()
     
@@ -113,5 +116,11 @@ class CountPriceCell: UITableViewCell {
         minusButton.setImage(data.minusButton, for: .normal)
         totalLabel.text = data.totalPriceLabel
         priceLabel.text = data.totalPrice
+    }
+    
+    @objc func imageRotation() {
+        UIView.animate(withDuration: 1.0, delay: 0, options: [.repeat, .curveLinear], animations: {
+            self.plusButton.transform = self.plusButton.transform.rotated(by: .pi)
+        }, completion: nil)
     }
 }

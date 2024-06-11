@@ -46,6 +46,7 @@ class SelectedItemViewController: UIViewController {
         setupConstraints()
         configuration()
         cellsRegistration()
+        animateAddToCartButton()
         
         self.tableView.separatorStyle = .none
         
@@ -119,6 +120,15 @@ class SelectedItemViewController: UIViewController {
         let ordetVC = OrderApprovViewController()
         navigationController?.pushViewController(ordetVC, animated: true)
     }
+    
+    //MARK: animate AddToCart button
+      func animateAddToCartButton() {
+          AddToCart.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+          
+          UIView.animate(withDuration: 0.5, delay: 0.5, options: [.curveEaseInOut], animations: {
+              self.AddToCart.transform = CGAffineTransform.identity
+          }, completion: nil)
+      }
 }
 
 extension SelectedItemViewController: UITableViewDelegate {

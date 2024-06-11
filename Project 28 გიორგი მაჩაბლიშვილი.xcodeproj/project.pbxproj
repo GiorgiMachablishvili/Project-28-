@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E3226B482C187A5F00620310 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = E3226B472C187A5F00620310 /* Lottie */; };
+		E3226B4C2C1880F400620310 /* finishAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = E3226B4B2C1880F400620310 /* finishAnimation.json */; };
 		E32BCBEE2C148D1F000EC75C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BCBED2C148D1F000EC75C /* AppDelegate.swift */; };
 		E32BCBF02C148D1F000EC75C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BCBEF2C148D1F000EC75C /* SceneDelegate.swift */; };
 		E32BCBF22C148D1F000EC75C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E32BCBF12C148D1F000EC75C /* ViewController.swift */; };
@@ -34,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E3226B4B2C1880F400620310 /* finishAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = finishAnimation.json; sourceTree = "<group>"; };
 		E32BCBEA2C148D1F000EC75C /* Project 28 გიორგი მაჩაბლიშვილი.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project 28 გიორგი მაჩაბლიშვილი.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E32BCBED2C148D1F000EC75C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E32BCBEF2C148D1F000EC75C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +70,7 @@
 			files = (
 				E39C67122C162CDF001EBB8E /* SnapKit in Frameworks */,
 				E39C67142C162CDF001EBB8E /* SnapKit-Dynamic in Frameworks */,
+				E3226B482C187A5F00620310 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +96,7 @@
 		E32BCBEC2C148D1F000EC75C /* Project 28 გიორგი მაჩაბლიშვილი */ = {
 			isa = PBXGroup;
 			children = (
+				E3226B4B2C1880F400620310 /* finishAnimation.json */,
 				E32BCC012C148D7D000EC75C /* App */,
 				E32BCC022C148E8C000EC75C /* Scenes */,
 				E39C67232C1658EC001EBB8E /* Selected Items */,
@@ -298,6 +303,7 @@
 			packageProductDependencies = (
 				E39C67112C162CDF001EBB8E /* SnapKit */,
 				E39C67132C162CDF001EBB8E /* SnapKit-Dynamic */,
+				E3226B472C187A5F00620310 /* Lottie */,
 			);
 			productName = "Project 28 გიორგი მაჩაბლიშვილი";
 			productReference = E32BCBEA2C148D1F000EC75C /* Project 28 გიორგი მაჩაბლიშვილი.app */;
@@ -329,6 +335,7 @@
 			mainGroup = E32BCBE12C148D1F000EC75C;
 			packageReferences = (
 				E39C67102C162CDF001EBB8E /* XCRemoteSwiftPackageReference "SnapKit" */,
+				E3226B462C187A5F00620310 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = E32BCBEB2C148D1F000EC75C /* Products */;
 			projectDirPath = "";
@@ -348,6 +355,7 @@
 				E39C670A2C162B2C001EBB8E /* Andika-BoldItalic.ttf in Resources */,
 				E39C67092C162B2C001EBB8E /* Andika-Regular.ttf in Resources */,
 				E32BCBFA2C148D21000EC75C /* LaunchScreen.storyboard in Resources */,
+				E3226B4C2C1880F400620310 /* finishAnimation.json in Resources */,
 				E39C670B2C162B2C001EBB8E /* Andika-Italic.ttf in Resources */,
 				E32BCBF72C148D21000EC75C /* Assets.xcassets in Resources */,
 			);
@@ -590,6 +598,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E3226B462C187A5F00620310 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.3;
+			};
+		};
 		E39C67102C162CDF001EBB8E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -601,6 +617,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E3226B472C187A5F00620310 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3226B462C187A5F00620310 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
 		E39C67112C162CDF001EBB8E /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E39C67102C162CDF001EBB8E /* XCRemoteSwiftPackageReference "SnapKit" */;
