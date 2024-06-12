@@ -10,8 +10,9 @@ import SnapKit
 
 class ImageCell: UITableViewCell {
     //MARK: -UI components
-    private lazy var productImage: UIImageView = {
+    lazy var productImage: UIImageView = {
         let view = UIImageView(frame: .zero)
+        view.isUserInteractionEnabled = true
         return view
     }()
     
@@ -23,8 +24,9 @@ class ImageCell: UITableViewCell {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
             self.implementTransformation()
-        })
-        setupTapGesture()
+        }) 
+        
+//        setupTapGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -52,13 +54,14 @@ class ImageCell: UITableViewCell {
         productImage.transform = scaleTransformation
     }
     
-    private func setupTapGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnGesture(_:)))
-        productImage.addGestureRecognizer(tapGesture)
-    }
+//    private func setupTapGesture() {
+//           let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnGesture(_:)))
+//           productImage.addGestureRecognizer(tapGesture)
+//       }
+//       
+//       @objc func didTapOnGesture(_ gesture: UITapGestureRecognizer) {
+//           let scaleTransformation = CGAffineTransform(scaleX: 1.5, y: 1.5)
+//           productImage.transform = scaleTransformation
+//       }
     
-    @objc func didTapOnGesture(_ gesture: UITapGestureRecognizer) {
-        let scaleTransformation = CGAffineTransform(scaleX: 1.5, y: 1.5)
-        productImage.transform = scaleTransformation
-    }
 }

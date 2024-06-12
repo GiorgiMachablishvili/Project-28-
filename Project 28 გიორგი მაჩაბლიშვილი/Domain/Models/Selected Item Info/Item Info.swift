@@ -6,13 +6,6 @@
 //
 
 import UIKit
-//
-//struct ItemInfo {
-//    let productImage: UIImage
-//    let productName: String
-////    let productDescription: String
-////    let productPrice: String
-//}
 
 struct ImageInfo {
     let productImage: UIImage

@@ -99,8 +99,6 @@
 				E3226B4B2C1880F400620310 /* finishAnimation.json */,
 				E32BCC012C148D7D000EC75C /* App */,
 				E32BCC022C148E8C000EC75C /* Scenes */,
-				E39C67232C1658EC001EBB8E /* Selected Items */,
-				E3BFFD8E2C16EF7D003FD556 /* Order Approve View */,
 				E32BCC072C14906F000EC75C /* Domain */,
 				E39C67012C16294D001EBB8E /* Resources */,
 				E32BCBFB2C148D21000EC75C /* Info.plist */,
@@ -121,6 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				E32BCC042C148EE4000EC75C /* Main View */,
+				E39C67232C1658EC001EBB8E /* Selected Items */,
+				E3BFFD8E2C16EF7D003FD556 /* Order Approve View */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
