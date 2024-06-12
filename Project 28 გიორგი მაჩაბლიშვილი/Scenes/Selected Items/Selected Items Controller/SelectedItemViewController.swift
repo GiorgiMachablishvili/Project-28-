@@ -46,6 +46,7 @@ class SelectedItemViewController: UIViewController {
         setupConstraints()
         configuration()
         cellsRegistration()
+        animateAddToCartButton()
         
         self.tableView.separatorStyle = .none
         
@@ -70,7 +71,7 @@ class SelectedItemViewController: UIViewController {
     func setupConstraints() {
         tableView.snp.remakeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view.snp.bottom).offset(-90)
+            make.bottom.equalTo(view.snp.bottom).offset(-90 * Constraint.yCoeff)
         }
         
         backButton.snp.remakeConstraints { make in
@@ -103,9 +104,9 @@ class SelectedItemViewController: UIViewController {
         }
         
         AddToCart.snp.remakeConstraints { make in
-            make.bottom.equalTo(view.snp.bottom).offset(-41)
-            make.leading.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(60)
+            make.bottom.equalTo(view.snp.bottom).offset(-41 * Constraint.yCoeff)
+            make.leading.trailing.equalToSuperview().inset(30 * Constraint.xCoeff)
+            make.height.equalTo(60 * Constraint.yCoeff)
         }
     }
     
@@ -119,6 +120,15 @@ class SelectedItemViewController: UIViewController {
         let ordetVC = OrderApprovViewController()
         navigationController?.pushViewController(ordetVC, animated: true)
     }
+    
+    //MARK: animate AddToCart button
+      func animateAddToCartButton() {
+          AddToCart.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+          
+          UIView.animate(withDuration: 0.5, delay: 0.5, options: [.curveEaseInOut], animations: {
+              self.AddToCart.transform = CGAffineTransform.identity
+          }, completion: nil)
+      }
 }
 
 extension SelectedItemViewController: UITableViewDelegate {
@@ -134,7 +144,33 @@ extension SelectedItemViewController: UITableViewDelegate {
                 return 44
             }
         }
+    
+    //MARK: tap section and shows double size image
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            if let cell = tableView.cellForRow(at: indexPath) as? ImageCell {
+                UIView.animate(withDuration: 0.3, animations: {
+                    cell.productImage.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+                }, completion: { _ in
+                    UIView.animate(withDuration: .infinity, animations: {
+                        cell.productImage.transform = CGAffineTransform.identity
+                    })
+                })
+            }
+        }
+        
+        //MARK: rotation plus and minus buttons
+        if indexPath.section == 2 {
+            if let cell = tableView.cellForRow(at: indexPath) as? CountPriceCell {
+                UIView.animate(withDuration: 1.0, delay: 0, options: [.repeat, .curveLinear], animations: {
+                    cell.plusButton.transform = cell.plusButton.transform.rotated(by: .pi)
+                    cell.minusButton.transform = cell.minusButton.transform.rotated(by: .pi)
+                }, completion: nil)
+            }
+        }
+    }
 }
+
 
 extension SelectedItemViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -10,10 +10,12 @@ import SnapKit
 
 class CountPriceCell: UITableViewCell {
     
-    private lazy var plusButton: UIButton = {
+    lazy var plusButton: UIButton = {
         let view = UIButton(frame: .zero)
         view.backgroundColor = UIColor(hexString: "092248")
-        view.setImage(UIImage(named: "Plus"), for: .normal)
+//        view.setImage(UIImage(named: "Plus"), for: .normal)
+        view.addTarget(self, action: #selector(imageRotation), for: .touchUpInside)
+        view.isUserInteractionEnabled = true
         return view
     }()
     
@@ -22,15 +24,16 @@ class CountPriceCell: UITableViewCell {
         view.font = UIFont.andikaRegular(size: 20)
         view.textColor = UIColor(hexString: "FFFFFF")
         view.textAlignment = .center
-        view.text = "1"
+//        view.text = "1"
         view.numberOfLines = 1
         return view
     }()
     
-    private lazy var minusButton: UIButton = {
+    lazy var minusButton: UIButton = {
         let view = UIButton(frame: .zero)
         view.backgroundColor = UIColor(hexString: "092248")
-        view.setImage(UIImage(named: "Minus"), for: .normal)
+//        view.setImage(UIImage(named: "Minus"), for: .normal)
+        view.isUserInteractionEnabled = true
         return view
     }()
     
@@ -38,7 +41,7 @@ class CountPriceCell: UITableViewCell {
         let view = UILabel(frame: .zero)
         view.font = UIFont.andikaRegular(size: 10)
         view.textColor = UIColor(hexString: "FFFFFF")
-        view.text = "Total price"
+//        view.text = "Total price"
         view.textAlignment = .center
         view.numberOfLines = 1
         return view
@@ -76,34 +79,34 @@ class CountPriceCell: UITableViewCell {
     func setupConstraints() {
         plusButton.snp.remakeConstraints { make in
             make.centerY.equalTo(snp.centerY)
-            make.leading.equalTo(snp.leading).offset(26)
-            make.width.height.equalTo(32)
+            make.leading.equalTo(snp.leading).offset(26 * Constraint.xCoeff)
+            make.width.height.equalTo(32 * Constraint.xCoeff)
         }
         
         itemCountLabel.snp.remakeConstraints { make in
             make.centerY.equalTo(snp.centerY)
-            make.leading.equalTo(plusButton.snp.trailing).offset(22)
-            make.width.equalTo(12)
-            make.height.equalTo(22)
+            make.leading.equalTo(plusButton.snp.trailing).offset(22 * Constraint.xCoeff)
+            make.width.equalTo(12 * Constraint.xCoeff)
+            make.height.equalTo(22 * Constraint.yCoeff)
         }
         
         minusButton.snp.remakeConstraints { make in
             make.centerY.equalTo(snp.centerY)
-            make.leading.equalTo(itemCountLabel.snp.trailing).offset(20)
-            make.width.height.equalTo(32)
+            make.leading.equalTo(itemCountLabel.snp.trailing).offset(20 * Constraint.xCoeff)
+            make.width.height.equalTo(32 * Constraint.xCoeff)
         }
         
         priceLabel.snp.remakeConstraints { make in
             make.centerY.equalTo(snp.centerY)
-            make.leading.equalTo(minusButton.snp.trailing).offset(30)
-            make.width.equalTo(79)
-            make.height.equalTo(28)
+            make.leading.equalTo(minusButton.snp.trailing).offset(30 * Constraint.xCoeff)
+            make.width.equalTo(79 * Constraint.xCoeff)
+            make.height.equalTo(28 * Constraint.yCoeff)
         }
         
         totalLabel.snp.remakeConstraints { make in
-            make.top.equalTo(snp.top).offset(9)
-            make.leading.equalTo(minusButton.snp.trailing).offset(30)
-            make.height.equalTo(14)
+            make.top.equalTo(snp.top).offset(9 * Constraint.yCoeff)
+            make.leading.equalTo(minusButton.snp.trailing).offset(30 * Constraint.xCoeff)
+            make.height.equalTo(14 * Constraint.yCoeff)
         }
     }
     
@@ -113,5 +116,11 @@ class CountPriceCell: UITableViewCell {
         minusButton.setImage(data.minusButton, for: .normal)
         totalLabel.text = data.totalPriceLabel
         priceLabel.text = data.totalPrice
+    }
+    
+    @objc func imageRotation() {
+        UIView.animate(withDuration: 1.0, delay: 0, options: [.repeat, .curveLinear], animations: {
+            self.plusButton.transform = self.plusButton.transform.rotated(by: .pi)
+        }, completion: nil)
     }
 }
